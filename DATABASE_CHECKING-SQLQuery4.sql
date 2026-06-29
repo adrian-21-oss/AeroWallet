@@ -1,0 +1,3 @@
+﻿
+EXEC sp_help 'SR_TRANSACTION_TABLE';
+
