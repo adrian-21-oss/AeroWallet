@@ -14,4 +14,6 @@ AeroWallet is a web-based fintech dashboard built with ASP.NET Web Forms, C#, an
 My work can be found here FINALS/src
 
 
-AeroWallet is not finished yet.
+AeroWallet is not finished yet. However, you can check it on this link below:
+
+http://aerowallet.runasp.net/
