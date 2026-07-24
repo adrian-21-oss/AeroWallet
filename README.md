@@ -17,3 +17,4 @@ My work can be found here FINALS/src
 AeroWallet is not finished yet. However, you can check it on this link below:
 
 http://aerowallet.runasp.net/
+It is better to avoid using mobile phone when accessing the website for much User experience.
