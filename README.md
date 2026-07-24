@@ -18,4 +18,4 @@ AeroWallet is not finished yet. However, you can check it on this link below:
 
 http://aerowallet.runasp.net/
 
-It is better to avoid using mobile phones when accessing the website for much User experience.
+It is advisable to avoid using mobile phones when accessing the website for much better user experience.
