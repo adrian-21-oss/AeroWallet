@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.Services.Description;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace FINALS
 {
@@ -23,23 +22,33 @@ namespace FINALS
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            connDB = WebConfigurationManager.ConnectionStrings["EWallet_dbConnect"].ConnectionString;
+            try {
 
-            if (!IsPostBack)
-            {
+                connDB = WebConfigurationManager.ConnectionStrings["EWallet_dbConnect"].ConnectionString;
 
-                if (Session["Account_ID"] != null)
+                if (!IsPostBack)
                 {
-                    accountId = Session["Account_ID"].ToString();
-                    LoadUserData(accountId);
 
-                } else
-                {
-                    Response.Redirect("Login.aspx");
+                    if (Session["Account_ID"] != null)
+                    {
+                        accountId = Session["Account_ID"].ToString();
+                        LoadUserData(accountId);
+
+                    }
+                    else
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
                 }
 
 
+            } catch (Exception ex) {
+
+                System.Diagnostics.Trace.WriteLine("Page_Load error: " + ex.ToString());
+            
+
             }
+
 
 
         }

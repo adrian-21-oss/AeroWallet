@@ -39,19 +39,19 @@
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" runat="server" href="~/src/Dashboard">Your Wallet</a>
+                <a class="navbar-brand" runat="server" href="~/Dashboard">Your Wallet</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/Dashboard">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/CloudMoney">CloudMoney</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/Deposit">Deposit</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/Withdraw">Withdraw</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/Settings">Settings</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/src/Report">History</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Dashboard">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/CloudMoney">CloudMoney</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Deposit">Deposit</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Withdraw">Withdraw</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Settings">Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Report">History</a></li>
                     </ul>
                 </div>
             </div>

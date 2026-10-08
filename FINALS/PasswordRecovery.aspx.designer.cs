@@ -11,7 +11,7 @@ namespace FINALS
 {
 
 
-    public partial class Login
+    public partial class PasswordRecovery
     {
 
         /// <summary>
@@ -24,66 +24,75 @@ namespace FINALS
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// accountUsername control.
+        /// accountIDDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox accountUsername;
+        protected global::System.Web.UI.WebControls.Label accountIDDisplay;
 
         /// <summary>
-        /// rfv_accountUsername control.
+        /// fullNameDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_accountUsername;
+        protected global::System.Web.UI.WebControls.Label fullNameDisplay;
 
         /// <summary>
-        /// accountPass control.
+        /// usernameDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox accountPass;
+        protected global::System.Web.UI.WebControls.Label usernameDisplay;
 
         /// <summary>
-        /// rfv_accountPass control.
+        /// newPasswordInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_accountPass;
+        protected global::System.Web.UI.WebControls.TextBox newPasswordInput;
 
         /// <summary>
-        /// message control.
+        /// rfv_newPasswordInput control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label message;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_newPasswordInput;
 
         /// <summary>
-        /// login control.
+        /// confirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button login;
+        protected global::System.Web.UI.WebControls.TextBox confirmPass;
 
         /// <summary>
-        /// register control.
+        /// rfv_confirmPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button register;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_confirmPass;
+
+        /// <summary>
+        /// btn_recoverPasswordId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_recoverPasswordId;
     }
 }

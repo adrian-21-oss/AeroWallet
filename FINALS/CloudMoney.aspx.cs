@@ -1,18 +1,18 @@
-﻿using System;
+﻿using FINALS.Controllers;
+using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-
-
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Web.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Ajax.Utilities;
+using System.Web;
+using System.Web.Configuration;
+using System.Web.Http;
+using System.Web.Http.Results;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace FINALS.src
 {
@@ -129,25 +129,75 @@ namespace FINALS.src
 
         protected void SendMoney(object sender, EventArgs e)
         {
-            string accountId = Session["Account_ID"]?.ToString();
+
+            try {
+
+                string accountId = Session["Account_ID"]?.ToString();
 
 
-            string sendAmount = sendMoney_Input.Text.Trim();
-            string accountPassword = accountPass.Text.Trim();
+                string sendAmount = sendMoney_Input.Text.Trim();
+                string accountPassword = accountPass.Text.Trim();
 
 
-            bool isAmountSufficient = CheckAmount(decimal.Parse(sendAmount), accountId);
-            bool isAmountValid = IsValidAmount(sendAmount);
+                //Calling API from another controller to check if the recipient account exists
+                string recipientAccountIdText = accountNumber_Input.Text.Trim();
+                var api = new Controllers.CheckAccountAvailabilityApiController();
+                IHttpActionResult actionResult = api.Get(recipientAccountIdText);
 
-            bool isPasswordValid = PasswordValidation(accountPassword, accountId);
+                var result = actionResult as System.Web.Http.Results.OkNegotiatedContentResult<AccountAvailabilityResult>;
 
-            if (isAmountSufficient && isAmountValid && isPasswordValid)
-            {
-                SendingMoney(sendAmount);
-            } else
-            {
-                message2.Text = $"Invalid input. Please check the amount and password. {isAmountSufficient} {isAmountValid} {isPasswordValid}";
+                if (result == null || result.Content == null || !result.Content.isRegistered)
+                {
+
+                    message2.Text = "Recipient account does not exist. 2";
+                    return;
+                   
+                }
+                message2.Text = "";
+
+                /*
+                 * WHY DYNAMIC + REFLECTION IS USED HERE:
+                 * 
+                 * 1. THE PROBLEM:
+                 *    The API controller returns an anonymous object: return Ok(new { success = true, isRegistered = ... }).
+                 *    At compile time, C# generates a secret, unnamed internal type for this anonymous object.
+                 *    Attempting a direct cast like `as OkNegotiatedContentResult<object>` fails and returns `null` 
+                 *    because C# cannot map the secret compiler-generated type to `object` within Web API's generic wrapper.
+                 * 
+                 * 2. THE SOLUTION:
+                 *    - Casting the `IHttpActionResult` to `dynamic` bypasses strict generic type checking.
+                 *    - Using Reflection (`GetProperty("isRegistered")`) allows us to safely extract the 
+                 *      property by name directly from `result.Content` without needing a strongly-typed model class.
+                 */
+
+
+
+
+
+                bool isAmountSufficient = CheckAmount(decimal.Parse(sendAmount), accountId);
+                bool isAmountValid = IsValidAmount(sendAmount);
+
+                bool isPasswordValid = PasswordValidation(accountPassword, accountId);
+
+                if (isAmountSufficient && isAmountValid && isPasswordValid)
+                {
+                    SendingMoney(sendAmount);
+                }
+                else
+                {
+                    message2.Text = $"Invalid input. Please check the amount and password.";
+                    Console.WriteLine($"isAmountSufficient: {isAmountSufficient}, isAmountValid: {isAmountValid}, isPasswordValid: {isPasswordValid}");
+                }
+
             }
+            catch (Exception ex) { 
+            
+                System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
+                return;
+
+
+            }
+
 
 
 

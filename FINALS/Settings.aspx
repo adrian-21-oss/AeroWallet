@@ -134,7 +134,7 @@
         <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px;" />
         
         <div class="settings-container">
-            <h2>Change Password</h2>
+            <p style="font-size: 28px ; font-weight:700;">Change Password</p>
             
             <br />
             <br />
@@ -143,8 +143,8 @@
 
 
             <div class="form-group">
-                <span class="input-label">Current Password:</span>
-                <asp:TextBox ID="currentPassword_Input" TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
+                <!-- <span class="input-label">Current Password:</span> -->
+                <asp:TextBox ID="currentPassword_Input" placeholder="Current Password" TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfv_currentPassword" runat="server"
                     ControlToValidate="currentPassword_Input" ErrorMessage="Required"
                     Forecolor="Red" CssClass="validator-text" Display="Dynamic">
@@ -154,8 +154,8 @@
 
 
             <div class="form-group">
-                <span class="input-label">New Password:</span>
-                <asp:TextBox ID="newPassword_Input" TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
+                <!--<span class="input-label">New Password:</span> -->
+                <asp:TextBox ID="newPassword_Input" placeholder="New Password" TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfv_newPassword" runat="server"
                     ControlToValidate="newPassword_Input" ErrorMessage="Required"
                     Forecolor="Red" CssClass="validator-text" Display="Dynamic">
@@ -163,10 +163,9 @@
             </div>
 
 
-
             <div class="form-group">
-                <span class="input-label">Confirm New Password:</span>
-                <asp:TextBox ID="confirmNewPassword_Input" TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
+                <!-- <span class="input-label">Confirm New Password:</span> -->
+                <asp:TextBox ID="confirmNewPassword_Input" placeholder="Confirm New Password"  TextMode="Password" runat="server" CssClass="modern-input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfv_confirmNewPassword" runat="server"
                     ControlToValidate="confirmNewPassword_Input" ErrorMessage="Required"
                     Forecolor="Red" CssClass="validator-text" Display="Dynamic">
@@ -176,6 +175,9 @@
                     ErrorMessage="Passwords do not match" Forecolor="Red" 
                     CssClass="validator-text" Display="Dynamic">
                 </asp:CompareValidator>
+
+                <br />
+
             </div>
 
             <br />
@@ -190,12 +192,15 @@
         <br />
 
         <div class="settings-container-2">
-            <h2>Account Session</h2>
+            <p style="font-size: 28px ; font-weight:700;">Account Session</p>
             
             <div style="margin-left: auto; margin-right:20px; margin-top:15px; margin-bottom:10px; width: 98px;">
                 <asp:Button id="logOut" CausesValidation="false" OnClick="Log_Out" text="Log Out" runat="server" CssClass="btn-logout"/>
             </div>
         </div>
         <br />
+
+
+
     </main>
 </asp:Content>

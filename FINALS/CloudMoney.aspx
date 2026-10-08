@@ -169,8 +169,8 @@
             <div class="form-section">
                 <label class="label-text">Enter Account No.</label>
                 <div class="input-group">
-                    <asp:TextBox ID="accountNumber_Input" runat="server" CssClass="form-input" placeholder="e.g. 1234567"></asp:TextBox>
-                    <asp:Button id="checkID" OnClick="Check_ID" CssClass="acc-check" CausesValidation="false" runat="server" Text="Check Account"/>
+                    <asp:TextBox ID="accountNumber_Input" runat="server" onblur="verifyAccountApi(this.value)" Visible="true" CssClass="form-input" placeholder="e.g. 1234567"></asp:TextBox>
+                    <!--<asp:Button id="checkID" OnClick="Check_ID" CssClass="acc-check" CausesValidation="false" runat="server" Text="Check Account"/>   -->
                 </div>
                 <asp:RequiredFieldValidator ID="rfv_accountNumber_Input" runat="server"
                     ControlToValidate="accountNumber_Input" ErrorMessage="Account number is required"
@@ -184,6 +184,8 @@
                 <asp:Label ID="AccountIDDisplay" runat="server" Text="Account Number: ---" style="display:block; font-weight:bold;"></asp:Label>
                 <asp:Label ID="NameDisplay" runat="server" Text="Recipient Name: ---"></asp:Label>
             </div>
+
+
 
             <br />
             <br />
@@ -230,10 +232,62 @@
             </p>
 
             <asp:Button id="btn_sendMoney" text="Send Money" OnClick="SendMoney" runat="server" CssClass="btn-action btn-send"/>
-            <div style="text-align: center; margin-top: 10px;">
+
+            <div style="text-align: left; margin-top: 10px;">
                 <asp:Label ID="message2" runat="server" ForeColor="red" CssClass="error-small"></asp:Label>
             </div>
 
         </div>
+
+        <script>
+            async function verifyAccountApi(accountId) {
+                try {
+
+                    if (!accountId || !accountId.trim() || accountId.trim() == '') {
+                        return;
+                    }
+
+
+                    const apiUrl = `/api/checkaccountavailabilityapi?accountId=${encodeURIComponent(accountId)}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'GET'
+                    })
+
+                    if (!response.ok) {
+                        console.log("HTTP Error: " + response.status)
+                        return;
+                    }
+
+
+
+                    const data = await response.json();
+                    const accountIDDisplay = document.getElementById('<%= AccountIDDisplay.ClientID %>');
+                    const accountNameDisplay = document.getElementById('<%= NameDisplay.ClientID %>');
+
+                    if (!accountIDDisplay && !accountNameDisplay) {
+                        return;
+                    }
+
+
+                    if (data) {
+
+                        accountIDDisplay.innerText = `Account Number: ${data.accountId}`;
+                        accountNameDisplay.innerText = `Recipient Name: ${data.accountFullName}`;
+
+                    }
+
+
+                } catch (err) {
+
+                    console.error("HTTP Error: ", err)
+
+                }
+                
+
+
+
+            }
+        </script>
     </main>
 </asp:Content>
